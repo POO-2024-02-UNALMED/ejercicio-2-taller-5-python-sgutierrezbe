@@ -1,0 +1,81 @@
+1. Si deseo modificar el mensaje del método ruido al crear un objeto Pajaro sin alterar
+la clase Animal ¿Qué debo agregarle al código? (Por ejemplo, al llamar el método
+ruido imprima, cantar y silbar).
+
+Tienes que sobreescribir el metodo en la clase hijo, por ejemplo
+
+    def ruido(self):
+        return "cantar"
+
+2. Si se crea una nueva clase Pez, y no se definen nuevos métodos, constructor y atributos.
+¿Qué constructor tendrá esta clase, qué argumentos recibe? ¿Qué otros métodos y
+atributos tendrán estos mismos?
+
+Si no se le agrega nada adicional, ni se modifican los anteriores, esta clase hereda los atributos
+constructor, y metodos de su clase padre "Animal"
+
+3. ¿Qué ocurre con el atributo nombre y edad de la clase SerVivo, al momento de
+definirse en la Clase Animal? ¿Cómo cambiaría el código del constructor para que
+estos atributos sean el mismo?
+
+En este caso, estos atributos se sobreescriben, ya que se vuelven a definir a la hora de definir los 
+atributos de la clase animal, si quisieramos heredar estos atributos de la mimsa forma en la que se
+encuentran en la clase padre, se tendria que usar super().__init__(nombre, edad) antes de definir 
+los atributos de la clase animal.
+
+4. En la clase Animal se sobrescribieron los métodos setNombre y getNombre, ¿Como
+modificaría estos métodos para que su funcionamiento no oculte algún valor de la
+clase padre? ¿Podría plantearse esta solución usando super()?
+
+Si, haciendo uso de super() a la hora de redefinir los metodos, y heredando estos metodos directamente
+de la clase padre como en el punto anterior, se podria acceder a los metodos set y get de la clase padre, 
+seria algo similar a 
+
+    def setNombre(self, nombre):
+        super().setNombre(nombre)
+
+    def getNombre(self):
+        return super().getNombre()
+
+5. El atributo totalCreados de la clase SerVivo ¿es heredado por las demás clases? ¿En
+este caso ocurre ocultación de los atributos al definirlo de nuevo en las clases hijas?
+
+Si, ya que al heredar los atributos, tambien se heredan aquellos que se demoniman "protegidos" al
+usar _ al inicio, pero esto no afecta la herencia, lo que si afecta es el redefinir el atributo
+en una clase hija, eso si generaria ocultacion del atributo original, ya que este ya no es accesible
+
+
+6. ¿Los métodos getTotalCreados sobrescriben al metodo de su padre?
+Si, ya que no se usa el super(), ademas no es pertinente usarlo ya que se busca saber el valor total de
+creados de cada clase, si este valor se heredara, daria todos los creados de la clase padre, lo cual no es
+lo que se busca.
+
+7. ¿Qué métodos hereda una clase que hereda de la clase Persona?
+
+Hereda los atributos _totalCreados, nombre y edad, ademas de los atributos que esta nueva clase hipotetica
+defina, y los metodos, heredara el constructor, aduenarAnimal, getTotalCreados, y los de el padre de persona,
+que serian los getter y setter de edad y nombre.
+
+
+8. ¿Qué tipo de objetos podrían pasársele al método aduenarAnimal de la clase
+Persona?¿Se le puede pasar un objeto serVivo?
+
+Gracias al polimorfismo, puede entrar cualquier objeto con el metodo ruido, asi que puede entrar cualquier
+objeto animal, o subclase de animal, pero la clase ser vivo no cuenta con este metodo, por lo cual no se permite
+
+
+9. ¿Cómo podría obtener la cantidad de seres vivos que se creen (objetos creados)?
+
+Haciendo uso del metodo getTotalCreados, este devuelve el valor _totalCreados, el cual tambien
+incrementa al crearse instancias de las clases hijas, asi que nos devolveria el valor de todos los seres
+vivos.
+
+10. Si se define el siguiente método en la clase Perro:
+def getRaza(self, tipo):
+return self._raza + " " + tipo
+¿Qué ocurre con el método getRaza de la clase Animal? ¿Este método se sobreescribe o
+se sobrecarga?
+
+Este metodo se sobreescribe ya que en python no se puede generar multiples metodos con el mismo nombre
+que se sobrecargen al tener una firma diferente como si es el caso de java, asi que se sobreescibe totalmente
+sobre el metodo definido en la clase animal.
